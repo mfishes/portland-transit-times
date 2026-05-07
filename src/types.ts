@@ -47,6 +47,8 @@ export interface Alert {
 export interface VehiclePosition {
   vehicleId: string;
   position: Location;
+  // Degrees clockwise from true north (0 = N, 90 = E). Optional in GTFS-RT.
+  bearing?: number;
 
   // Denormalized Route Info
   route: Route;

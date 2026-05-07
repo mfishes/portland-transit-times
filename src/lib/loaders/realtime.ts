@@ -64,6 +64,7 @@ export class GTFSRealtimeLoader {
       const tripId = entity.vehicle?.trip?.tripId;
       const lat = entity.vehicle?.position?.latitude;
       const lng = entity.vehicle?.position?.longitude;
+      const rawBearing = entity.vehicle?.position?.bearing;
 
       if (!vehicleId || !tripId || !lat || !lng) {
         console.warn("Invalid vehicle data:", entity);
@@ -82,10 +83,13 @@ export class GTFSRealtimeLoader {
         continue;
       }
 
-      const vehicleData = {
+      const vehicleData: VehiclePosition = {
         vehicleId,
         position: { lat, lng },
         route,
+        ...(typeof rawBearing === "number" && Number.isFinite(rawBearing)
+          ? { bearing: rawBearing }
+          : {}),
       };
 
       vehiclesData.push(vehicleData);
