@@ -14,8 +14,8 @@ function vehicleIcon(routeColor: string, iconSize: number, bearing?: number) {
     html: renderToString(
       <Box
         style={{
-          background: "white",
-          border: "1px solid black",
+          background: routeColor || "white ",
+          border: `1px solid ${routeColor || "black"}`,
           borderRadius: "50%",
           width: iconSize + 4,
           height: iconSize + 4,
@@ -27,8 +27,8 @@ function vehicleIcon(routeColor: string, iconSize: number, bearing?: number) {
       >
         <DirectionsBusIcon
           style={{
-            stroke: "black",
-            fill: routeColor || "black",
+            stroke: routeColor || "black",
+            fill: "white",
             width: iconSize,
             height: iconSize,
           }}
